@@ -52,7 +52,6 @@ echo "Starting FastAPI backend on port $BACKEND_PORT..."
 uvicorn main:app --host 0.0.0.0 --port "$BACKEND_PORT" --reload &
 BACKEND_PID=$!
 
-deactivate
 
 # --- Frontend setup -------------------------------------------------------
 echo "--- Setting up frontend ---"
