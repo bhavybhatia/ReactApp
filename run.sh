@@ -90,7 +90,7 @@ if [ ! -d "$VENV_DIR" ]; then
   python3 -m venv "$VENV_DIR"
 fi
 # shellcheck disable=SC1091
-source "$VENV_DIR/bin/activate"
+source "./backend/venv/bin/activate"
 pip install -q --upgrade pip
 pip install -q -r requirements.txt
 echo "Starting FastAPI backend on port $BACKEND_PORT..."
