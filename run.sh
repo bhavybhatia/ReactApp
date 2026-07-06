@@ -38,21 +38,21 @@ fi
 echo "--- Setting up backend ---"
 cd "$BACKEND_DIR"
 
-# if [ ! -d "$VENV_DIR" ]; then
-#   echo "Creating Python virtual environment..."
-#   python3 -m venv "$VENV_DIR"
-# fi
+if [ ! -d "$VENV_DIR" ]; then
+  echo "Creating Python virtual environment..."
+  python3 -m venv "$VENV_DIR"
+fi
 
-# # shellcheck disable=SC1091
-# source "$VENV_DIR/bin/activate"
-# pip install -q --upgrade pip
-# pip install -q -r requirements.txt
+# shellcheck disable=SC1091
+source "$VENV_DIR/bin/activate"
+pip install -q --upgrade pip
+pip install -q -r requirements.txt
 
 echo "Starting FastAPI backend on port $BACKEND_PORT..."
 uvicorn main:app --host 0.0.0.0 --port "$BACKEND_PORT" --reload &
 BACKEND_PID=$!
 
-# deactivate
+deactivate
 
 # --- Frontend setup -------------------------------------------------------
 echo "--- Setting up frontend ---"
