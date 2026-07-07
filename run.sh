@@ -60,7 +60,7 @@ cd "$BACKEND_DIR"
 # pip install -q -r requirements.txt
 
 echo "Starting FastAPI backend on port $BACKEND_PORT..."
-uvicorn main:app --host 0.0.0.0 --port "$BACKEND_PORT" --reload &
+python3 -m uvicorn main:app --host 0.0.0.0 --port "$BACKEND_PORT" --reload &
 BACKEND_PID=$!
 
 # deactivate
