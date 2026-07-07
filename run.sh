@@ -13,7 +13,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKEND_DIR="$SCRIPT_DIR/backend"
 FRONTEND_DIR="$SCRIPT_DIR/frontend"
-VENV_DIR="$BACKEND_DIR/venv"
+# VENV_DIR="$BACKEND_DIR/venv"
 
 BACKEND_PORT=8000
 FRONTEND_PORT=5173
@@ -26,33 +26,33 @@ if ! command -v python3 &>/dev/null; then
   exit 1
 fi
 
-if ! command -v npm &>/dev/null; then
-  echo "ERROR: npm is not installed. Install Node.js (which includes npm) and re-run." >&2
-  echo "  macOS:   brew install node" >&2
-  echo "  Ubuntu:  sudo apt-get install -y nodejs npm" >&2
-  echo "  Or use nvm: https://github.com/nvm-sh/nvm" >&2
-  exit 1
-fi
+# if ! command -v npm &>/dev/null; then
+#   echo "ERROR: npm is not installed. Install Node.js (which includes npm) and re-run." >&2
+#   echo "  macOS:   brew install node" >&2
+#   echo "  Ubuntu:  sudo apt-get install -y nodejs npm" >&2
+#   echo "  Or use nvm: https://github.com/nvm-sh/nvm" >&2
+#   exit 1
+# fi
 
 # --- Backend setup ------------------------------------------------------
 echo "--- Setting up backend ---"
 cd "$BACKEND_DIR"
 
-if [ ! -d "$VENV_DIR" ]; then
-  echo "Creating Python virtual environment..."
-  python3 -m venv "$VENV_DIR"
-fi
+# if [ ! -d "$VENV_DIR" ]; then
+#   echo "Creating Python virtual environment..."
+#   python3 -m venv "$VENV_DIR"
+# fi
 
-# shellcheck disable=SC1091
-source "$VENV_DIR/bin/activate"
-pip install -q --upgrade pip
-pip install -q -r requirements.txt
+# # shellcheck disable=SC1091
+# source "$VENV_DIR/bin/activate"
+# pip install -q --upgrade pip
+# pip install -q -r requirements.txt
 
 echo "Starting FastAPI backend on port $BACKEND_PORT..."
 uvicorn main:app --host 0.0.0.0 --port "$BACKEND_PORT" --reload &
 BACKEND_PID=$!
 
-deactivate
+# deactivate
 
 # --- Frontend setup -------------------------------------------------------
 echo "--- Setting up frontend ---"
